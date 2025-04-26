@@ -1,0 +1,335 @@
+/* Import font chữ dễ thương */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* Font dự phòng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Màu nền gradient hồng dễ thương */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    overflow: hidden;
+    /* Chống scroll khi nút No chạy */
+    color: #333;
+    padding: 15px;
+    /* Thêm padding để nội dung không sát viền màn hình nhỏ */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.92);
+    /* Nền trắng mờ */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    /* Giới hạn chiều rộng trên màn hình lớn */
+    width: 100%;
+    /* Chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+    position: relative;
+    /* Để định vị nút No */
+    overflow: hidden;
+    /* Đảm bảo nút No không tràn ra ngoài container */
+}
+
+#start-screen h1 {
+    font-family: 'Pacifico', cursive;
+    color: #e91e63;
+    /* Màu hồng */
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#start-screen p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.bear-gif {
+    max-width: 150px;
+    /* Kích thước ảnh gif */
+    margin: 15px auto;
+    display: block;
+}
+
+.messages {
+    margin-bottom: 30px;
+    /* Khoảng cách dưới khu vực tin nhắn */
+}
+
+.message {
+    font-family: 'Pacifico', cursive;
+    /* Font chữ dễ thương cho lời nhắn */
+    font-size: 1.5em;
+    /* Kích thước chữ */
+    color: #d81b60;
+    /* Màu hồng đậm hơn */
+    margin-bottom: 15px;
+    line-height: 1.6;
+    /* Giãn dòng */
+    min-height: 80px;
+    /* Chiều cao tối thiểu để tránh giật layout */
+    opacity: 0;
+    /* Luôn ẩn ban đầu */
+    /* Hiệu ứng mờ dần khi ẩn/hiện */
+    transition: opacity 0.5s ease-in-out;
+    /* Thời gian khớp với fadeDuration trong JS */
+    /* Đảm bảo text căn giữa nếu câu ngắn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* Thêm padding để chữ không sát viền box */
+}
+
+.question-container {
+    margin-top: 30px;
+    opacity: 0;
+    /* Ẩn ban đầu */
+    transition: opacity 1s ease-in;
+    /* Hiệu ứng hiện box câu hỏi */
+}
+
+/* Class để hiện box câu hỏi */
+.question-container.visible {
+    opacity: 1;
+}
+
+
+.question {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    /* Bo tròn hơn */
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 10px 5px;
+    /* Tăng khoảng cách dọc */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    /* Đảm bảo nút trên cùng 1 hàng nếu đủ chỗ */
+}
+
+#yes-btn {
+    background-color: #ff4081;
+    /* Màu hồng đậm */
+    color: white;
+    padding: 15px 35px;
+    /* To hơn */
+    font-size: 1.3em;
+    /* Chữ to hơn */
+}
+
+#yes-btn:hover {
+    background-color: #f50057;
+    transform: scale(1.05);
+    /* Phóng to nhẹ khi hover */
+}
+
+#no-btn {
+    background-color: #f1f1f1;
+    /* Màu xám nhạt */
+    color: #555;
+    padding: 8px 15px;
+    /* Nhỏ hơn */
+    font-size: 0.9em;
+    /* Chữ nhỏ hơn */
+    position: absolute;
+    /* Cho phép di chuyển tự do */
+    /* Vị trí ban đầu sẽ được set bởi JS */
+    z-index: 10;
+    /* Đảm bảo nút No nổi lên trên */
+}
+
+#no-btn:hover {
+    background-color: #e0e0e0;
+}
+
+#success-message {
+    font-family: 'Pacifico', cursive;
+}
+
+#success-message h1 {
+    color: #4CAF50;
+    /* Màu xanh lá */
+    font-size: 2.8em;
+    margin-bottom: 15px;
+}
+
+#success-message p {
+    color: #333;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+
+/* --- Responsive CSS --- */
+
+/* Cho màn hình nhỏ hơn máy tính bảng (<= 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+
+    .message {
+        font-size: 1.4em;
+        /* Giảm cỡ chữ tin nhắn */
+        min-height: 75px;
+    }
+
+    .question {
+        font-size: 1.5em;
+        /* Giảm cỡ chữ câu hỏi */
+    }
+
+    #success-message h1 {
+        font-size: 2.5em;
+    }
+
+    #success-message p {
+        font-size: 1.3em;
+    }
+
+    .bear-gif {
+        max-width: 130px;
+    }
+}
+
+
+/* Cho màn hình điện thoại (<= 600px) */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        /* Giảm padding container */
+    }
+
+    #start-screen h1 {
+        font-size: 2em;
+        /* Giảm cỡ chữ tiêu đề */
+    }
+
+    .message {
+        font-size: 1.3em;
+        /* Giảm nữa cỡ chữ tin nhắn */
+        min-height: 70px;
+    }
+
+    .question {
+        font-size: 1.4em;
+        /* Giảm nữa cỡ chữ câu hỏi */
+    }
+
+    button {
+        font-size: 1em;
+        /* Giảm cỡ chữ nút */
+        padding: 10px 18px;
+        /* Điều chỉnh padding nút */
+        margin: 8px 5px;
+        /* Điều chỉnh margin nút */
+    }
+
+    #yes-btn {
+        padding: 12px 25px;
+        /* Điều chỉnh padding nút Yes */
+        font-size: 1.1em;
+    }
+
+    #no-btn {
+        padding: 7px 13px;
+        /* Điều chỉnh padding nút No */
+        font-size: 0.85em;
+    }
+
+    #success-message h1 {
+        font-size: 2.2em;
+    }
+
+    #success-message p {
+        font-size: 1.2em;
+    }
+
+    .bear-gif {
+        max-width: 110px;
+    }
+}
+
+/* Cho màn hình điện thoại rất nhỏ (<= 400px) */
+@media (max-width: 400px) {
+    #start-screen h1 {
+        font-size: 1.8em;
+    }
+
+    .message {
+        font-size: 1.1em;
+        /* Giảm tối đa cỡ chữ tin nhắn */
+        min-height: 60px;
+        padding: 5px;
+    }
+
+    .question {
+        font-size: 1.2em;
+        /* Giảm tối đa cỡ chữ câu hỏi */
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+
+    #yes-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #no-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    #success-message h1 {
+        font-size: 1.9em;
+    }
+
+    #success-message p {
+        font-size: 1.1em;
+    }
+
+    .bear-gif {
+        max-width: 90px;
+    }
+
+    /* Có thể cần sắp xếp lại nút trên màn hình quá nhỏ */
+    /* Ví dụ: cho các nút xuống dòng */
+    /*
+    #yes-btn, #no-btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+    #no-btn {
+       position: relative; // Hoặc static để nó không chạy nữa trên màn hình quá nhỏ
+       margin-top: 10px;
+       left: auto;
+       top: auto;
+    }
+    */
+}

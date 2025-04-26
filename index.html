@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Sơ Ri ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="start-screen">
+            <h1>Gửi đến Sơ Ri</h1>
+            <p>(Nhấn vào màn hình để bắt đầu nha)</p>
+            <img src="https://i.imgur.com/WHoXeqR.gif" alt="Cute Bear" class="bear-gif">
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <div class="messages">
+                <p class="message" id="current-message"></p>
+            </div>
+
+            <div class="question-container" id="question-box" style="display: none;">
+                <p class="question"></p>
+                <button id="yes-btn">❤️ Có ạ ❤️</button>
+                <button id="no-btn">💔 Không nha 💔</button>
+            </div>
+
+            <div id="success-message" style="display: none;">
+                <h1>Yêu Sơ Ri nhiều lắm! 🎉</h1>
+                <p>Anh biết em sẽ đồng ý mà 😊. Từ giờ hãy để anh chăm sóc em nhé!</p>
+                <img src="https://i.imgur.com/zmZ8wSj.gif" alt="Happy Bears" class="bear-gif">
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="background.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
